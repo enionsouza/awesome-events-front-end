@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Mister Fisher';
+  src:
+    local('Mister Fisher'),
+    url("../assets/fonts/Mister\ Fisher.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: meta-normal;
+  src:
+    local(meta-normal),
+    url("../assets/fonts/meta-normal.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: futura;
+  src:
+    local(futura),
+    url("../assets/fonts/futura-md-bt-medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+:root {
+  --green: #97bf11;
+  --transparent-green: #97bf1199;
+  --orange: #ffb400;
+  --blue: #10bbb5;
+  --dark-gray: #3d3d3d;
+  --light-gray: #e3e3e3;
+}
+
+body {
+  margin: 0;
+  font-family: futura, monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
