@@ -18,6 +18,8 @@ const SignInForm = () => {
       onSubmit={async (e) => {
         e.preventDefault();
         await signInAction(email, password);
+        setEmail('');
+        setPassword('');
       }}
     >
       <Form.Group className="mb-3" controlId="formBasicEmail">
