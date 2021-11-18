@@ -20,6 +20,10 @@ const SignUpForm = () => {
       onSubmit={async (e) => {
         e.preventDefault();
         await signUpAction(userName, email, password, passwordConfirmation);
+        setEmail('');
+        setPassword('');
+        setUserName('');
+        setPasswordConfirmation('');
       }}
     >
       <Form.Group className="mb-3" controlId="formBasicEmail">
