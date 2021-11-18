@@ -1,9 +1,10 @@
 import URL from '../../utils/commons';
 
-// Actions
+// Action Types
 const SIGN_UP = 'SIGN_UP';
 const SIGN_IN = 'SIGN_IN';
 const SIGN_OUT = 'SIGN_OUT';
+const FETCH_USER = 'FETCH_USER';
 
 // Initial State
 const initialState = {
@@ -20,6 +21,8 @@ export default (state = initialState, action) => {
       return action.payload;
     case SIGN_OUT:
       return initialState;
+    case FETCH_USER:
+      return action.payload;
     default:
       return state;
   }
@@ -101,4 +104,22 @@ export const signOut = () => async (dispatch) => {
   localStorage.clear();
 
   dispatch({ type: SIGN_OUT });
+};
+
+export const fetchUser = () => async (dispatch) => {
+  const res = await fetch(`${URL}logged_user`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
+    },
+  });
+  const data = await res.json();
+  const payload = {};
+
+  payload.name = data.user.name;
+  payload.email = data.user.email;
+
+  dispatch({ type: FETCH_USER, payload });
 };
