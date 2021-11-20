@@ -64,7 +64,7 @@ const NavPanel = () => {
                 <SignOutButton />
                 <Nav className="justify-content-start flex-grow-1 pe-3">
                   <Nav.Link href="#action1">Events</Nav.Link>
-                  <Nav.Link href="#action2">Create Events</Nav.Link>
+                  <Nav.Link href="/create_event">Create Events</Nav.Link>
                   <Nav.Link href="#action2">My Reservation</Nav.Link>
                 </Nav>
               </>
