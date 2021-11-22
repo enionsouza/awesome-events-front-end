@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { createEvent } from '../redux/event/event';
 
 const CreateEventForm = () => {
-  console.log(JSON.parse(localStorage.getItem('token')));
   const dispatch = useDispatch();
   const createEventAction = bindActionCreators(createEvent, dispatch);
 
