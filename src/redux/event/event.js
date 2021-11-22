@@ -1,16 +1,22 @@
 import URL from '../../utils/commons';
 
 // Action Types
+const LOADING = 'LOADING';
 const CREATE_EVENT = 'CREATE_EVENT';
+const ALL_EVENTS = 'ALL_EVENTS';
 
 // Initial State
-const initialState = [];
+const initialState = { loading: true, events: [] };
 
 // Reducer
 export default (state = initialState, action) => {
   switch (action.type) {
+    case LOADING:
+      return { ...state, loading: true };
     case CREATE_EVENT:
-      return action.payload;
+      return { loading: false, events: [...state.events, action.payload] };
+    case ALL_EVENTS:
+      return { loading: false, events: action.payload };
     default:
       return state;
   }
@@ -18,7 +24,7 @@ export default (state = initialState, action) => {
 
 // Action Creators
 export const createEvent = (formData) => (dispatch) => {
-  // const payload = {};
+  let payload = {};
 
   fetch(`${URL}events`, {
     method: 'POST',
@@ -30,7 +36,22 @@ export const createEvent = (formData) => (dispatch) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      payload = data;
     });
-  dispatch({ type: CREATE_EVENT });
+  dispatch({ type: CREATE_EVENT, payload });
+};
+
+// Show All Events
+
+export const allEvents = () => async (dispatch) => {
+  dispatch({ type: LOADING });
+  const res = await fetch(`${URL}events`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Accept: 'application/json',
+    },
+  });
+  const data = await res.json();
+  dispatch({ type: ALL_EVENTS, payload: data });
 };

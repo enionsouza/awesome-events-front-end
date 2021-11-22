@@ -9,7 +9,7 @@ const FETCH_USER = 'FETCH_USER';
 // Initial State
 const initialState = {
   name: '',
-  email: '',
+  id: '',
 };
 
 // Reducer
@@ -50,7 +50,7 @@ export const signUp = (name, email, password, passwordConfirmation) => (dispatch
     .then((res) => res.json())
     .then((data) => {
       payload.name = data.user.name;
-      payload.email = data.user.email;
+      payload.id = data.user.id;
       localStorage.token = JSON.stringify(data.user.token);
     });
 
@@ -87,7 +87,7 @@ export const signIn = (email, password) => async (dispatch) => {
   const userData = await userRes.json();
 
   payload.name = userData.user.name;
-  payload.email = userData.user.email;
+  payload.id = userData.user.id;
 
   dispatch({ type: SIGN_IN, payload });
 };
@@ -119,7 +119,7 @@ export const fetchUser = () => async (dispatch) => {
   const payload = {};
 
   payload.name = data.user.name;
-  payload.email = data.user.email;
+  payload.id = data.user.id;
 
   dispatch({ type: FETCH_USER, payload });
 };
