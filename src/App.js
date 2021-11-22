@@ -5,6 +5,7 @@ import NavPanel from './component/NavPanel';
 import Home from './component/Home';
 import CreateEventForm from './component/CreateEventForm';
 import AllEvents from './component/AllEvents';
+import AttendingEvents from './component/AttendingEvents';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/sign_in" element={<SignInForm />} />
           <Route exact path="/create_event" element={<CreateEventForm />} />
           <Route exact path="/all_events" element={<AllEvents />} />
+          <Route exact path="/attending_events" element={<AttendingEvents />} />
         </Routes>
       </Router>
     </div>

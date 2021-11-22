@@ -4,6 +4,7 @@ import URL from '../../utils/commons';
 const LOADING = 'LOADING';
 const CREATE_EVENT = 'CREATE_EVENT';
 const ALL_EVENTS = 'ALL_EVENTS';
+const ATTENDING_EVENTS = 'ATTENDING_EVENTS';
 
 // Initial State
 const initialState = { loading: true, events: [] };
@@ -16,6 +17,8 @@ export default (state = initialState, action) => {
     case CREATE_EVENT:
       return { loading: false, events: [...state.events, action.payload] };
     case ALL_EVENTS:
+      return { loading: false, events: action.payload };
+    case ATTENDING_EVENTS:
       return { loading: false, events: action.payload };
     default:
       return state;
@@ -54,4 +57,17 @@ export const allEvents = () => async (dispatch) => {
   });
   const data = await res.json();
   dispatch({ type: ALL_EVENTS, payload: data });
+};
+
+export const attendingEvents = () => async (dispatch) => {
+  dispatch({ type: LOADING });
+  const res = await fetch(`${URL}attendances`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Accept: 'application/json',
+    },
+  });
+  const data = await res.json();
+  dispatch({ type: ATTENDING_EVENTS, payload: data });
 };
