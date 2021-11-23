@@ -65,7 +65,7 @@ const NavPanel = () => {
                 <Nav className="justify-content-start flex-grow-1 pe-3">
                   <Nav.Link href="/all_events">Events</Nav.Link>
                   <Nav.Link href="/create_event">Create Events</Nav.Link>
-                  <Nav.Link href="/attending_events">My Reservation</Nav.Link>
+                  <Nav.Link href="/attending_events">My Reservations</Nav.Link>
                 </Nav>
               </>
             ) : (
