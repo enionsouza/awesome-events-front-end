@@ -59,10 +59,7 @@ const AllEvents = () => {
   };
 
   const handleNavigation = (change) => {
-    if (
-      (activePage + change <= lastPage && change > 0)
-      || (activePage + change >= 1 && change < 0)
-    ) {
+    if (activePage + change >= 1 && activePage + change <= lastPage) {
       setActivePage((prevActivePage) => prevActivePage + change);
     }
   };

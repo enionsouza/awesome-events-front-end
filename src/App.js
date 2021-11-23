@@ -7,6 +7,7 @@ import CreateEventForm from './component/CreateEventForm';
 import AllEvents from './component/AllEvents';
 import AttendingEvents from './component/AttendingEvents';
 import EventDetails from './component/EventDetails';
+import ReservationForm from './component/ReservationForm';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/all_events" element={<AllEvents />} />
           <Route exact path="/attending_events" element={<AttendingEvents />} />
           <Route exact path="/event_details" element={<EventDetails />} />
+          <Route exact path="/reservation_form" element={<ReservationForm />} />
         </Routes>
       </Router>
     </div>
