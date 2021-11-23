@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useNavigate } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
-import { allEvents } from '../redux/event/event';
+import { allEvents, setEventDetails } from '../redux/event/event';
 
 const AllEvents = () => {
   const dispatch = useDispatch();
   const allEventsAction = bindActionCreators(allEvents, dispatch);
-  const events = useSelector((state) => state.events.events);
+  const setEventDetailsAction = bindActionCreators(setEventDetails, dispatch);
+  const events = useSelector((state) => state.events.allEvents);
   const loading = useSelector((state) => state.events.loading);
+  const navigate = useNavigate();
 
   const cardsPerPage = 3;
   const lastPage = Math.ceil(events.length / cardsPerPage);
@@ -32,23 +35,22 @@ const AllEvents = () => {
       i < Math.min(cardsPerPage * activePage, events.length);
       i += 1
     ) {
-      let dateOfEvent = new Date(events[i].date_of_event);
-      const dd = String(dateOfEvent.getDate()).padStart(2, '0');
-      const mm = String(dateOfEvent.getMonth() + 1).padStart(2, '0');
-      const yyyy = dateOfEvent.getFullYear();
-
-      dateOfEvent = `${mm}/${dd}/${yyyy}`;
-
       result.push(
         <Card key={events[i].id} style={{ width: '18rem' }}>
           <Card.Img variant="top" src={`${events[i].image}`} />
           <Card.Body>
             <Card.Title>{`${events[i].name}`}</Card.Title>
             <Card.Text>{`${events[i].description}`}</Card.Text>
-            {/* <Card.Text>{`${events[i].city}`}</Card.Text>
-            <Card.Text>{`${events[i].country}`}</Card.Text>
-            <Card.Text>{`${dateOfEvent}`}</Card.Text>
-            <Button variant="primary">Details</Button> */}
+            <Button
+              variant="primary"
+              onClick={() => {
+                setEventDetailsAction(events[i]);
+                navigate('/event_details');
+              }}
+            >
+              Details
+
+            </Button>
           </Card.Body>
         </Card>,
       );
@@ -56,7 +58,7 @@ const AllEvents = () => {
     return result;
   };
 
-  const navigateEvents = (change) => {
+  const handleNavigation = (change) => {
     if (
       (activePage + change <= lastPage && change > 0)
       || (activePage + change >= 1 && change < 0)
@@ -71,12 +73,12 @@ const AllEvents = () => {
         <h1>Upcoming Events</h1>
         <h4>Please select an event</h4>
       </div>
-      <div className="d-flex align-items-center">
-        <Button onClick={() => navigateEvents(-1)}>
+      <div className="d-flex align-items-center justify-content-between">
+        <Button onClick={() => handleNavigation(-1)}>
           <BiLeftArrow style={{ fontSize: '2rem' }} />
         </Button>
         {!loading && renderEvents()}
-        <Button onClick={() => navigateEvents(1)}>
+        <Button onClick={() => handleNavigation(1)}>
           <BiRightArrow style={{ fontSize: '2rem' }} />
         </Button>
       </div>

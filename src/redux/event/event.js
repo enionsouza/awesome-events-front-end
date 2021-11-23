@@ -5,9 +5,15 @@ const LOADING = 'LOADING';
 const CREATE_EVENT = 'CREATE_EVENT';
 const ALL_EVENTS = 'ALL_EVENTS';
 const ATTENDING_EVENTS = 'ATTENDING_EVENTS';
+const SET_EVENT_DETAILS = 'SET_EVENT_DETAILS';
 
 // Initial State
-const initialState = { loading: true, events: [] };
+const initialState = {
+  loading: true,
+  allEvents: [],
+  attendingEvents: [],
+  eventDetails: {},
+};
 
 // Reducer
 export default (state = initialState, action) => {
@@ -15,11 +21,13 @@ export default (state = initialState, action) => {
     case LOADING:
       return { ...state, loading: true };
     case CREATE_EVENT:
-      return { loading: false, events: [...state.events, action.payload] };
+      return { ...state, loading: false, allEvents: [...state.allEvents, action.payload] };
     case ALL_EVENTS:
-      return { loading: false, events: action.payload };
+      return { ...state, loading: false, allEvents: action.payload };
     case ATTENDING_EVENTS:
-      return { loading: false, events: action.payload };
+      return { ...state, loading: false, attendingEvents: action.payload };
+    case SET_EVENT_DETAILS:
+      return { ...state, loading: false, eventDetails: action.payload };
     default:
       return state;
   }
@@ -71,3 +79,7 @@ export const attendingEvents = () => async (dispatch) => {
   const data = await res.json();
   dispatch({ type: ATTENDING_EVENTS, payload: data });
 };
+
+export const setEventDetails = (eventDetails) => (
+  { type: SET_EVENT_DETAILS, payload: eventDetails }
+);

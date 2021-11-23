@@ -6,6 +6,7 @@ import Home from './component/Home';
 import CreateEventForm from './component/CreateEventForm';
 import AllEvents from './component/AllEvents';
 import AttendingEvents from './component/AttendingEvents';
+import EventDetails from './component/EventDetails';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/create_event" element={<CreateEventForm />} />
           <Route exact path="/all_events" element={<AllEvents />} />
           <Route exact path="/attending_events" element={<AttendingEvents />} />
+          <Route exact path="/event_details" element={<EventDetails />} />
         </Routes>
       </Router>
     </div>

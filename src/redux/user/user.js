@@ -76,18 +76,8 @@ export const signIn = (email, password) => async (dispatch) => {
 
   localStorage.token = JSON.stringify(data.user.token);
 
-  const userRes = await fetch(`${URL}logged_user`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
-    },
-  });
-  const userData = await userRes.json();
-
-  payload.name = userData.user.name;
-  payload.id = userData.user.id;
+  payload.name = data.user.name;
+  payload.id = data.user.id;
 
   dispatch({ type: SIGN_IN, payload });
 };
@@ -107,19 +97,25 @@ export const signOut = () => async (dispatch) => {
 };
 
 export const fetchUser = () => async (dispatch) => {
-  const res = await fetch(`${URL}logged_user`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
-    },
-  });
-  const data = await res.json();
   const payload = {};
 
-  payload.name = data.user.name;
-  payload.id = data.user.id;
+  if (localStorage.token) {
+    const res = await fetch(`${URL}logged_user`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
+      },
+    });
+    const data = await res.json();
+
+    payload.name = data.user.name;
+    payload.id = data.user.id;
+  } else {
+    payload.name = initialState.name;
+    payload.id = initialState.id;
+  }
 
   dispatch({ type: FETCH_USER, payload });
 };

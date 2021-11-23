@@ -12,9 +12,9 @@ const CreateEventForm = () => {
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventImage, setEventImage] = useState('');
-  const [eventDate, setEventDate] = useState('');
-  const [eventCity, setEventCity] = useState('');
-  const [eventCountry, setEventCountry] = useState('');
+  // const [eventDate, setEventDate] = useState('');
+  // const [eventCity, setEventCity] = useState('');
+  // const [eventCountry, setEventCountry] = useState('');
 
   return (
     <Form
@@ -24,10 +24,13 @@ const CreateEventForm = () => {
         formData.append('name', eventName);
         formData.append('description', eventDescription);
         formData.append('image', eventImage);
-        formData.append('date_of_event', eventDate);
-        formData.append('city', eventCity);
-        formData.append('country', eventCountry);
+        // formData.append('date_of_event', eventDate);
+        // formData.append('city', eventCity);
+        // formData.append('country', eventCountry);
         await createEventAction(formData);
+        setEventName('');
+        setEventDescription('');
+        e.target.reset();
       }}
       className="mt-3"
     >
@@ -63,7 +66,7 @@ const CreateEventForm = () => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEventDate">
+      {/* <Form.Group className="mb-3" controlId="formBasicEventDate">
         <Form.Control
           type="date"
           value={eventDate}
@@ -93,7 +96,8 @@ const CreateEventForm = () => {
           }}
           placeholder="Enter country"
         />
-      </Form.Group>
+      </Form.Group> */}
+
       <Button variant="primary" type="submit">
         Submit
       </Button>
