@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { signUp } from '../redux/user/user';
@@ -9,6 +10,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const signUpAction = bindActionCreators(signUp, dispatch);
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
@@ -24,6 +26,7 @@ const SignUpForm = () => {
         setPassword('');
         setUserName('');
         setPasswordConfirmation('');
+        navigate('/');
       }}
     >
       <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { signIn } from '../redux/user/user';
@@ -8,7 +9,7 @@ import { signIn } from '../redux/user/user';
 const SignInForm = () => {
   const dispatch = useDispatch();
   const signInAction = bindActionCreators(signIn, dispatch);
-  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +21,7 @@ const SignInForm = () => {
         await signInAction(email, password);
         setEmail('');
         setPassword('');
+        navigate('/');
       }}
     >
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -33,8 +35,6 @@ const SignInForm = () => {
         />
         <Form.Text className="text-muted">
           We&apos;ll never share your email with anyone else.
-          {' '}
-          {user.name}
         </Form.Text>
       </Form.Group>
 

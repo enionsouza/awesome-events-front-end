@@ -6,8 +6,6 @@ import {
   Navbar,
   Offcanvas,
   Nav,
-  Form,
-  FormControl,
   Button,
   Container,
   Image,
@@ -31,19 +29,6 @@ const NavPanel = () => {
     <Navbar bg="light" expand={false}>
       <Container fluid className="d-flex justify-between">
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
-        {user.name ? (
-          <Form className="d-flex">
-            <FormControl
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-        ) : (
-          ' '
-        )}
         <Navbar.Offcanvas
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"

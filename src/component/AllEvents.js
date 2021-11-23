@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { useNavigate } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
-import { allEvents, setEventDetails } from '../redux/event/event';
+import { allEvents } from '../redux/event/event';
+import SelectEvents from './SelectEvent';
 
 const AllEvents = () => {
   const dispatch = useDispatch();
   const allEventsAction = bindActionCreators(allEvents, dispatch);
-  const setEventDetailsAction = bindActionCreators(setEventDetails, dispatch);
   const events = useSelector((state) => state.events.allEvents);
   const loading = useSelector((state) => state.events.loading);
-  const navigate = useNavigate();
 
   const cardsPerPage = 3;
   const lastPage = Math.ceil(events.length / cardsPerPage);
@@ -41,16 +39,7 @@ const AllEvents = () => {
           <Card.Body>
             <Card.Title>{`${events[i].name}`}</Card.Title>
             <Card.Text>{`${events[i].description}`}</Card.Text>
-            <Button
-              variant="primary"
-              onClick={() => {
-                setEventDetailsAction(events[i]);
-                navigate('/event_details');
-              }}
-            >
-              Details
-
-            </Button>
+            <SelectEvents event={events[i]} />
           </Card.Body>
         </Card>,
       );
