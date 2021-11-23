@@ -1,3 +1,16 @@
 .image-size {
   width: 200px;
 }
+
+.light-font {
+  color: white;
+}
+
+.bg-green {
+  background-color: rgb(151, 191, 15, 0.2);
+}
+
+.shadowed-white {
+  -webkit-filter: drop-shadow(0 0 2px rgb(240, 240, 240));
+  filter: drop-shadow(0 0 2px rgb(240, 240, 240));
+}
