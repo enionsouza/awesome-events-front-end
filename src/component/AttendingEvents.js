@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { useNavigate } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
-import { attendingEvents, setEventDetails } from '../redux/event/event';
+import { attendingEvents } from '../redux/event/event';
+import SelectEvent from './SelectEvent';
 
 const AttendingEvents = () => {
   const dispatch = useDispatch();
   const attendingEventsAction = bindActionCreators(attendingEvents, dispatch);
-  const setEventDetailsAction = bindActionCreators(setEventDetails, dispatch);
   const events = useSelector((state) => state.events.attendingEvents);
   const loading = useSelector((state) => state.events.loading);
-  const navigate = useNavigate();
 
   const cardsPerPage = 3;
   const lastPage = Math.ceil(events.length / cardsPerPage);
@@ -37,7 +35,7 @@ const AttendingEvents = () => {
       i += 1
     ) {
       let date = new Date(events[i].date);
-      const dd = String(date.getDate() + 1).padStart(2, '0');
+      const dd = String(date.getDate()).padStart(2, '0');
       const mm = String(date.getMonth() + 1).padStart(2, '0');
       const yyyy = date.getFullYear();
 
@@ -51,16 +49,7 @@ const AttendingEvents = () => {
             <Card.Text>{`${events[i].description}`}</Card.Text>
             <Card.Text>{`${events[i].city}`}</Card.Text>
             <Card.Text>{`${date}`}</Card.Text>
-            <Button
-              variant="primary"
-              onClick={() => {
-                setEventDetailsAction(events[i]);
-                navigate('/event_details');
-              }}
-            >
-              Details
-
-            </Button>
+            <SelectEvent event={events[i]} />
           </Card.Body>
         </Card>,
       );
