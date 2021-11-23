@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +7,7 @@ import { BiLeftArrow } from 'react-icons/bi';
 
 const EventDetails = () => {
   const details = useSelector((state) => state.events.eventDetails);
+  const loading = useSelector((state) => state.events.loading);
   const [date, setDate] = useState(null);
   const navigate = useNavigate();
 
@@ -25,22 +27,30 @@ const EventDetails = () => {
   }, []);
 
   return (
-    <Card key={details.id} style={{ width: '36rem' }}>
-      <Card.Img variant="top" src={`${details.image}`} />
-      <Card.Body className="d-flex flex-column align-items-start">
-        <Card.Title className="align-self-center">{`${details.name}`}</Card.Title>
-        <Card.Text>{`Description: ${details.description}`}</Card.Text>
-        {date && (
-        <>
-          <Card.Text>{`Creator: ${details.creator_name}`}</Card.Text>
-          <Card.Text>{`City: ${details.city}`}</Card.Text>
-          <Card.Text>{`Date of Event: ${date}`}</Card.Text>
-        </>
-        )}
-        <Button variant="primary">Reserve</Button>
-        <Button variant="secondary" onClick={() => navigate(-1)}><BiLeftArrow /></Button>
-      </Card.Body>
-    </Card>
+    <>
+      { !loading && (
+        <Card key={details.id} style={{ width: '36rem' }}>
+          <Card.Img variant="top" src={`${details.image}`} />
+          <Card.Body className="d-flex flex-column align-items-start">
+            <Card.Title className="align-self-center">{`${details.name}`}</Card.Title>
+            <Card.Text>{`Description: ${details.description}`}</Card.Text>
+            {date && (
+            <>
+              <Card.Text>{`Creator: ${details.creator_name}`}</Card.Text>
+              <Card.Text>{`City: ${details.city}`}</Card.Text>
+              <Card.Text>{`Date of Event: ${date}`}</Card.Text>
+            </>
+            )}
+            {date ? (
+              <Button variant="primary">Cancel Reservation</Button>
+            ) : (
+              <Button variant="primary" onClick={() => navigate('/reservation_form')}>Reserve</Button>
+            )}
+            <Button variant="secondary" onClick={() => navigate(-1)}><BiLeftArrow /></Button>
+          </Card.Body>
+        </Card>
+      ) }
+    </>
   );
 };
 

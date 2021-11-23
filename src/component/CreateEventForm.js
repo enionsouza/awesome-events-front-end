@@ -12,9 +12,6 @@ const CreateEventForm = () => {
   const [eventName, setEventName] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventImage, setEventImage] = useState('');
-  // const [eventDate, setEventDate] = useState('');
-  // const [eventCity, setEventCity] = useState('');
-  // const [eventCountry, setEventCountry] = useState('');
 
   return (
     <Form
@@ -24,9 +21,6 @@ const CreateEventForm = () => {
         formData.append('name', eventName);
         formData.append('description', eventDescription);
         formData.append('image', eventImage);
-        // formData.append('date_of_event', eventDate);
-        // formData.append('city', eventCity);
-        // formData.append('country', eventCountry);
         await createEventAction(formData);
         setEventName('');
         setEventDescription('');
@@ -65,38 +59,6 @@ const CreateEventForm = () => {
           }}
         />
       </Form.Group>
-
-      {/* <Form.Group className="mb-3" controlId="formBasicEventDate">
-        <Form.Control
-          type="date"
-          value={eventDate}
-          onChange={(e) => {
-            setEventDate(e.target.value);
-          }}
-        />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicEventCity">
-        <Form.Control
-          type="text"
-          value={eventCity}
-          onChange={(e) => {
-            setEventCity(e.target.value);
-          }}
-          placeholder="Enter city"
-        />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicEventCountry">
-        <Form.Control
-          type="text"
-          value={eventCountry}
-          onChange={(e) => {
-            setEventCountry(e.target.value);
-          }}
-          placeholder="Enter country"
-        />
-      </Form.Group> */}
 
       <Button variant="primary" type="submit">
         Submit

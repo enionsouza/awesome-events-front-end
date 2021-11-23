@@ -83,3 +83,29 @@ export const attendingEvents = () => async (dispatch) => {
 export const setEventDetails = (eventDetails) => (
   { type: SET_EVENT_DETAILS, payload: eventDetails }
 );
+
+export const reserveEvent = (eventDetails) => async (dispatch) => {
+  dispatch({ type: LOADING });
+
+  await fetch(`${URL}attendances`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ attendance: eventDetails }),
+  });
+
+  const res = await fetch(`${URL}attendances`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Accept: 'application/json',
+    },
+  });
+
+  const data = await res.json();
+
+  dispatch({ type: ATTENDING_EVENTS, payload: data });
+};
