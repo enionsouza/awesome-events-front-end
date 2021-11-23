@@ -3,14 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Card, Button } from 'react-bootstrap';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
-import { allEvents } from '../redux/event/event';
+import { allEvents, deleteEvent } from '../redux/event/event';
 import SelectEvents from './SelectEvent';
 
 const AllEvents = () => {
   const dispatch = useDispatch();
   const allEventsAction = bindActionCreators(allEvents, dispatch);
+  const deleteEventAction = bindActionCreators(deleteEvent, dispatch);
   const events = useSelector((state) => state.events.allEvents);
   const loading = useSelector((state) => state.events.loading);
+  const user = useSelector((state) => state.user);
 
   const cardsPerPage = 3;
   const lastPage = Math.ceil(events.length / cardsPerPage);
@@ -40,6 +42,11 @@ const AllEvents = () => {
             <Card.Title>{`${events[i].name}`}</Card.Title>
             <Card.Text>{`${events[i].description}`}</Card.Text>
             <SelectEvents event={events[i]} />
+            {user.id === events[i].creator_id && (
+              <Button onClick={() => deleteEventAction(events[i].id)}>
+                Delete
+              </Button>
+            )}
           </Card.Body>
         </Card>,
       );

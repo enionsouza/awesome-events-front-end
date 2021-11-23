@@ -21,7 +21,11 @@ export default (state = initialState, action) => {
     case LOADING:
       return { ...state, loading: true };
     case CREATE_EVENT:
-      return { ...state, loading: false, allEvents: [...state.allEvents, action.payload] };
+      return {
+        ...state,
+        loading: false,
+        allEvents: [...state.allEvents, action.payload],
+      };
     case ALL_EVENTS:
       return { ...state, loading: false, allEvents: action.payload };
     case ATTENDING_EVENTS:
@@ -52,6 +56,26 @@ export const createEvent = (formData) => (dispatch) => {
   dispatch({ type: CREATE_EVENT, payload });
 };
 
+export const deleteEvent = (eventId) => async (dispatch) => {
+  dispatch({ type: LOADING });
+  await fetch(`${URL}events/${eventId}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Accept: 'application/json',
+    },
+  });
+  const res = await fetch(`${URL}events`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Accept: 'application/json',
+    },
+  });
+  const data = await res.json();
+  dispatch({ type: ALL_EVENTS, payload: data });
+};
+
 // Show All Events
 
 export const allEvents = () => async (dispatch) => {
@@ -80,9 +104,10 @@ export const attendingEvents = () => async (dispatch) => {
   dispatch({ type: ATTENDING_EVENTS, payload: data });
 };
 
-export const setEventDetails = (eventDetails) => (
-  { type: SET_EVENT_DETAILS, payload: eventDetails }
-);
+export const setEventDetails = (eventDetails) => ({
+  type: SET_EVENT_DETAILS,
+  payload: eventDetails,
+});
 
 export const reserveEvent = (eventDetails) => async (dispatch) => {
   dispatch({ type: LOADING });
