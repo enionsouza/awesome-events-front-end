@@ -26,9 +26,9 @@ const NavPanel = () => {
     await fetchUserAction();
   }, []);
   return (
-    <Navbar bg="light" expand={false}>
+    <Navbar bg="transparent" className="sticky-top position-absolute" expand={false}>
       <Container fluid className="d-flex justify-between">
-        <Navbar.Toggle aria-controls="offcanvasNavbar" />
+        <Navbar.Toggle aria-controls="offcanvasNavbar" className="border border-4 bg-green shadowed-white" />
         <Navbar.Offcanvas
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"
@@ -36,7 +36,9 @@ const NavPanel = () => {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel">
-              <Image src={logo} className="image-size border-0" thumbnail />
+              <Link to="/">
+                <Image src={logo} className="image-size border-0" thumbnail />
+              </Link>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>

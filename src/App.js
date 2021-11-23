@@ -11,7 +11,7 @@ import ReservationForm from './component/ReservationForm';
 
 function App() {
   return (
-    <div className="App container-fluid d-flex justify-content-center flex-column">
+    <div className="App container-fluid d-flex justify-content-center flex-column px-0">
       <Router>
         <NavPanel />
         <Routes>
