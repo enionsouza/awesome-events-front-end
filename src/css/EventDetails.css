@@ -19,7 +19,8 @@ body {
 }
 
 .reservation-btn,
-.reservation-btn:hover {
+.reservation-btn:hover,
+.reservation-btn:focus {
   background-color: rgb(151, 191, 15);
   border-radius: 50px;
   margin-top: 4rem;

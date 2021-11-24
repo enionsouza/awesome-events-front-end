@@ -1,0 +1,9 @@
+.details-btn,
+.details-btn:hover {
+  background-color: white;
+  color: #d4d1d2;
+  border-radius: 50px;
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 3px solid #efefef;
+}
