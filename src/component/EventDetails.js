@@ -2,8 +2,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Card, Button } from 'react-bootstrap';
+import { Button, Image, Table } from 'react-bootstrap';
 import { BiLeftArrow } from 'react-icons/bi';
+import { GiCancel } from 'react-icons/gi';
+import { RiReservedLine } from 'react-icons/ri';
+import { IoIosArrowDropright } from 'react-icons/io';
+import '../css/EventDetails.css';
 
 const EventDetails = () => {
   const details = useSelector((state) => state.events.eventDetails);
@@ -40,33 +44,58 @@ const EventDetails = () => {
   return (
     <>
       {!loading && (
-        <Card key={details.id} style={{ width: '36rem' }}>
-          <Card.Img variant="top" src={`${details.image}`} />
-          <Card.Body className="d-flex flex-column align-items-start">
-            <Card.Title className="align-self-center">{`${details.name}`}</Card.Title>
-            <Card.Text>{`Description: ${details.description}`}</Card.Text>
-            {date && (
-              <>
-                <Card.Text>{`Creator: ${details.creator_name}`}</Card.Text>
-                <Card.Text>{`City: ${details.city}`}</Card.Text>
-                <Card.Text>{`Date of Event: ${date}`}</Card.Text>
-              </>
-            )}
+        <div className="row">
+          <div className="col-8 px-0">
+            <div className="gfg">
+              <Image className="img-carousel" src={`${details.image}`} />
+            </div>
+            <Button className="back-button" onClick={() => navigate(-1)}>
+              <BiLeftArrow className="fs-5" />
+            </Button>
+          </div>
+          <div className="col-4 d-flex flex-column align-items-end px-5">
+            <h2 className="pb-4 pt-4">{`${details.name}`}</h2>
+            <Table striped hover>
+              <tbody>
+                <tr>
+                  <th>Description:</th>
+                  <td>{`${details.description}`}</td>
+                </tr>
+                {date && (
+                  <>
+                    <tr>
+                      <th>Creator:</th>
+                      <td>{`${details.creator_name}`}</td>
+                    </tr>
+                    <tr>
+                      <th>City:</th>
+                      <td>{`${details.city}`}</td>
+                    </tr>
+                    <tr>
+                      <th>Date:</th>
+                      <td>{`${date}`}</td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </Table>
             {date ? (
-              <Button variant="primary">Cancel Reservation</Button>
+              <Button className="reservation-btn d-flex align-items-center">
+                <GiCancel className="fs-1 pe-2" />
+                <span>Cancel Reservation</span>
+              </Button>
             ) : (
               <Button
-                variant="primary"
+                className="reservation-btn d-flex align-items-center"
                 onClick={() => navigate('/reservation_form')}
               >
-                Reserve
+                <RiReservedLine className="fs-1 pe-2" />
+                <span>Reserve</span>
+                <IoIosArrowDropright className="ps-2 fs-3" />
               </Button>
             )}
-            <Button variant="secondary" onClick={() => navigate(-1)}>
-              <BiLeftArrow />
-            </Button>
-          </Card.Body>
-        </Card>
+          </div>
+        </div>
       )}
     </>
   );
