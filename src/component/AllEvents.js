@@ -78,7 +78,7 @@ const AllEvents = () => {
       </div>
       <div className="row">
         <div className="col-12 d-flex flex-column align-items-center">
-          <h1 className="title-events text-uppercase">Upcoming Events</h1>
+          <h1 className="title-events text-uppercase">Available Events</h1>
           <h6 className="subtitle-events">Please select an event</h6>
           <p className="dots-line mt-2">•••••••••••••••••••••</p>
         </div>
