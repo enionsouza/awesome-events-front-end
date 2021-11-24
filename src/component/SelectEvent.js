@@ -21,7 +21,7 @@ const SelectEvent = ({ event }) => {
       className="details-btn d-flex align-items-center"
     >
       <span>Details</span>
-      <IoIosArrowDropright className="ps-2 fs-3" />
+      <IoIosArrowDropright className="ps-1" />
     </Button>
   );
 };

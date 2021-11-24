@@ -53,3 +53,18 @@
   color: #cacaca;
   font-size: 0.9rem;
 }
+
+.delete-btn,
+.delete-btn:hover {
+  background-color: white;
+  color: #d4d1d2;
+  border-radius: 50px;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 2px solid #efefef;
+  font-size: 1rem;
+}
+
+.color-icon-cancel {
+  color: #facbcb;
+}

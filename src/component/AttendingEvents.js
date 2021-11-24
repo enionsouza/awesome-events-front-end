@@ -43,14 +43,18 @@ const AttendingEvents = () => {
       date = `${mm}/${dd}/${yyyy}`;
 
       result.push(
-        <div className="d-flex flex-column align-items-center justify-content-center" key={events[i].id} style={{ width: '18rem' }}>
+        <div
+          className="d-flex flex-column align-items-center justify-content-center mx-2"
+          key={events[i].id}
+          style={{ width: '9rem' }}
+        >
           <Image className="img-events" src={`${events[i].image}`} />
-          <h5 className="title-event-list mt-5 fw-bold text-uppercase">{`${events[i].name}`}</h5>
-          <p className="dots-line mt-2">•••••••••••••••••••••</p>
-          <p className="mb-0 text-event-list">{`Description: ${events[i].description}`}</p>
-          <p className="mb-0 text-event-list">{`City: ${events[i].city}`}</p>
-          <p className="mb-0 text-event-list">{`Date: ${date}`}</p>
-          <SelectEvent className="mt-2" event={events[i]} />
+          <h5 className="title-event-list mt-1 fw-bold text-uppercase text-center">{`${events[i].name}`}</h5>
+          <p className="dots-line mt-1 text-center">•••••••••••••••••••••</p>
+          <p className="mb-0 text-event-list text-center">{`Description: ${events[i].description}`}</p>
+          <p className="mb-0 text-event-list text-center">{`City: ${events[i].city}`}</p>
+          <p className="mb-0 text-event-list text-center">{`Date: ${date}`}</p>
+          <SelectEvent className="mt-1" event={events[i]} />
         </div>,
       );
     }
@@ -64,24 +68,26 @@ const AttendingEvents = () => {
   };
 
   return (
-    <div className="container-fluid px-0 height-container d-flex flex-column justify-content-center">
+    <div className="container-fluid px-0 height-container d-flex justify-content-between align-items-center">
+      <div className="row">
+        <Button className="back-btn" onClick={() => handleNavigation(-1)}>
+          <BiLeftArrow className="fw-bold" style={{ fontSize: '0.9rem' }} />
+        </Button>
+      </div>
       <div className="row">
         <div className="col-12 d-flex flex-column align-items-center">
           <h1 className="title-events text-uppercase">My Attending Events</h1>
-          <h4 className="subtitle-events">Please select an event</h4>
-          <p className="dots-line mt-4">•••••••••••••••••••••</p>
+          <h6 className="subtitle-events">Please select an event</h6>
+          <p className="dots-line mt-2">•••••••••••••••••••••</p>
+        </div>
+        <div className="col-12 d-flex align-items-center justify-content-between mt-2">
+          {!loading && renderEvents()}
         </div>
       </div>
-      <div className="row mt-5">
-        <div className="col-12 d-flex align-items-center justify-content-between">
-          <Button className="back-btn" onClick={() => handleNavigation(-1)}>
-            <BiLeftArrow className="fw-bold" style={{ fontSize: '1.2rem' }} />
-          </Button>
-          {!loading && renderEvents()}
-          <Button className="next-btn" onClick={() => handleNavigation(1)}>
-            <BiRightArrow className="fw-bold" style={{ fontSize: '1.2rem' }} />
-          </Button>
-        </div>
+      <div className="row">
+        <Button className="next-btn" onClick={() => handleNavigation(1)}>
+          <BiRightArrow className="fw-bold" style={{ fontSize: '0.9rem' }} />
+        </Button>
       </div>
     </div>
   );

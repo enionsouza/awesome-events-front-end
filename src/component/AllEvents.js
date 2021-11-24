@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Card, Button } from 'react-bootstrap';
+import { Image, Button } from 'react-bootstrap';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
+import { GiCancel } from 'react-icons/gi';
 import { allEvents, deleteEvent } from '../redux/event/event';
 import SelectEvents from './SelectEvent';
+import '../css/AllEvents.css';
 
 const AllEvents = () => {
   const dispatch = useDispatch();
@@ -36,19 +38,26 @@ const AllEvents = () => {
       i += 1
     ) {
       result.push(
-        <Card key={events[i].id} style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={`${events[i].image}`} />
-          <Card.Body>
-            <Card.Title>{`${events[i].name}`}</Card.Title>
-            <Card.Text>{`${events[i].description}`}</Card.Text>
-            <SelectEvents event={events[i]} />
-            {user.id === events[i].creator_id && (
-              <Button onClick={() => deleteEventAction(events[i].id)}>
-                Delete
-              </Button>
-            )}
-          </Card.Body>
-        </Card>,
+        <div
+          className="d-flex flex-column align-items-center justify-content-center mx-2"
+          key={events[i].id}
+          style={{ width: '18rem' }}
+        >
+          <Image className="img-events" src={`${events[i].image}`} />
+          <h5 className="title-event-list mt-1 fw-bold text-uppercase text-center">{`${events[i].name}`}</h5>
+          <p className="dots-line mt-1">•••••••••••••••••••••</p>
+          <p className="mb-0 text-event-list text-center">{`Description: ${events[i].description}`}</p>
+          <SelectEvents className="mt-1" event={events[i]} />
+          {user.id === events[i].creator_id && (
+            <Button
+              onClick={() => deleteEventAction(events[i].id)}
+              className="delete-btn d-flex align-items-center"
+            >
+              <GiCancel className="pe-1 color-icon-cancel" />
+              Delete
+            </Button>
+          )}
+        </div>,
       );
     }
     return result;
@@ -61,18 +70,25 @@ const AllEvents = () => {
   };
 
   return (
-    <div className="container-fluid">
-      <div className="d-flex flex-column align-items-center">
-        <h1>Upcoming Events</h1>
-        <h4>Please select an event</h4>
-      </div>
-      <div className="d-flex align-items-center justify-content-between">
-        <Button onClick={() => handleNavigation(-1)}>
-          <BiLeftArrow style={{ fontSize: '2rem' }} />
+    <div className="container-fluid px-0 height-container d-flex justify-content-between align-items-center">
+      <div className="row">
+        <Button className="back-btn" onClick={() => handleNavigation(-1)}>
+          <BiLeftArrow className="fw-bold" style={{ fontSize: '0.9rem' }} />
         </Button>
-        {!loading && renderEvents()}
-        <Button onClick={() => handleNavigation(1)}>
-          <BiRightArrow style={{ fontSize: '2rem' }} />
+      </div>
+      <div className="row">
+        <div className="col-12 d-flex flex-column align-items-center">
+          <h1 className="title-events text-uppercase">Upcoming Events</h1>
+          <h6 className="subtitle-events">Please select an event</h6>
+          <p className="dots-line mt-2">•••••••••••••••••••••</p>
+        </div>
+        <div className="col-12 d-flex align-items-center justify-content-between mt-2">
+          {!loading && renderEvents()}
+        </div>
+      </div>
+      <div className="row">
+        <Button className="next-btn" onClick={() => handleNavigation(1)}>
+          <BiRightArrow style={{ fontSize: '0.9rem' }} />
         </Button>
       </div>
     </div>
