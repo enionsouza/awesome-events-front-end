@@ -6,7 +6,6 @@ import {
   Navbar,
   Offcanvas,
   Nav,
-  Button,
   Container,
   Image,
 } from 'react-bootstrap';
@@ -41,35 +40,47 @@ const NavPanel = () => {
               </Link>
             </Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
+          <Offcanvas.Body classsName="px-0">
             {user.name ? (
               <>
-                <p className="pe-1 m-0">
+                <p className="pe-1 m-0 text-center">
                   Welcome Again
                   <span className="ms-2">{user.name}</span>
                 </p>
-                <SignOutButton />
-                <Nav className="justify-content-start flex-grow-1 pe-3">
-                  <Nav.Link href="/all_events">Events</Nav.Link>
-                  <Nav.Link href="/create_event">Create Events</Nav.Link>
-                  <Nav.Link href="/attending_events">My Reservations</Nav.Link>
+                <div className="d-flex justify-content-center mb-4">
+                  <SignOutButton />
+                </div>
+                <Nav className="justify-content-start flex-grow-1">
+                  <Nav.Link
+                    href="/all_events"
+                    className="text-uppercase fw-bold py-3 ps-5 menu-link"
+                  >
+                    Events
+
+                  </Nav.Link>
+                  <Nav.Link href="/create_event" className="text-uppercase fw-bold py-3 ps-5 menu-link">Create Events</Nav.Link>
+                  <Nav.Link href="/attending_events" className="text-uppercase fw-bold py-3 ps-5 menu-link">My Reservations</Nav.Link>
                 </Nav>
               </>
             ) : (
-              <>
-                <Button className="mx-2">
-                  <Link to="/sign_in" className="link-light">
-                    <FaSignInAlt />
-                    Sign In
-                  </Link>
-                </Button>
-                <Button className="mx-1">
-                  <Link to="/sign_up" className="link-light">
-                    <FiUserPlus />
-                    Sign Up
-                  </Link>
-                </Button>
-              </>
+              <div className="d-flex align-items-center justify-content-center">
+                <Link
+                  to="/sign_in"
+                  className="mx-2 gray-btn gray-text link-light d-flex align-items-center justify-content-center gray-text text-decoration-none
+"
+                >
+                  <FaSignInAlt />
+                  <span className="ms-2">Sign In</span>
+                </Link>
+                <Link
+                  to="/sign_up"
+                  className="mx-1 gray-btn link-light d-flex align-items-center justify-content-center gray-text text-decoration-none
+"
+                >
+                  <FiUserPlus />
+                  <span className="ms-2">Sign Up</span>
+                </Link>
+              </div>
             )}
           </Offcanvas.Body>
         </Navbar.Offcanvas>

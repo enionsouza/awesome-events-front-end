@@ -24,6 +24,10 @@
   box-shadow: 0 0 10px black;
 }
 
+.button-submit:focus {
+  background-color: rgb(151, 191, 15);
+}
+
 .input-submit {
   border: 2px solid rgb(151, 191, 15);
   font-size: 1.2rem;
