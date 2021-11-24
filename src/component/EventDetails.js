@@ -1,12 +1,14 @@
 /* eslint-disable no-lone-blocks */
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { useNavigate } from 'react-router-dom';
 import { Button, Image, Table } from 'react-bootstrap';
 import { BiLeftArrow } from 'react-icons/bi';
 import { GiCancel } from 'react-icons/gi';
 import { RiReservedLine } from 'react-icons/ri';
 import { IoIosArrowDropright } from 'react-icons/io';
+import { deleteAttendance } from '../redux/event/event';
 import '../css/EventDetails.css';
 
 const EventDetails = () => {
@@ -14,6 +16,8 @@ const EventDetails = () => {
   const loading = useSelector((state) => state.events.loading);
   const [date, setDate] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const deleteAttendanceAction = bindActionCreators(deleteAttendance, dispatch);
 
   useEffect(() => {
     if (details.date) {
@@ -80,7 +84,13 @@ const EventDetails = () => {
               </tbody>
             </Table>
             {date ? (
-              <Button className="reservation-btn d-flex align-items-center">
+              <Button
+                className="reservation-btn d-flex align-items-center"
+                onClick={() => {
+                  deleteAttendanceAction(details.id);
+                  navigate('/attending_events');
+                }}
+              >
                 <GiCancel className="fs-1 pe-2" />
                 <span>Cancel Reservation</span>
               </Button>
