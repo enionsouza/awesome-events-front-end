@@ -3,7 +3,9 @@ import { bindActionCreators } from 'redux';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { IoIosArrowDropright } from 'react-icons/io';
 import { setEventDetails } from '../redux/event/event';
+import '../css/SelectEvent.css';
 
 const SelectEvent = ({ event }) => {
   const dispatch = useDispatch();
@@ -16,8 +18,10 @@ const SelectEvent = ({ event }) => {
         setEventDetailsAction(event);
         navigate('/event_details');
       }}
+      className="details-btn d-flex align-items-center"
     >
-      Details
+      <span>Details</span>
+      <IoIosArrowDropright className="ps-2 fs-3" />
     </Button>
   );
 };
