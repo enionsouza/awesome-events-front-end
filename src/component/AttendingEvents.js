@@ -28,6 +28,13 @@ const AttendingEvents = () => {
     }
   }, []);
 
+  const limitLength = (str) => {
+    if (str.length > 20) {
+      return `${str.slice(0, 20)}...`;
+    }
+    return str;
+  };
+
   const renderEvents = () => {
     const result = [];
     for (
@@ -46,12 +53,12 @@ const AttendingEvents = () => {
         <div
           className="d-flex flex-column align-items-center justify-content-center mx-2"
           key={events[i].id}
-          style={{ width: '9rem' }}
+          style={{ width: '18rem' }}
         >
           <Image className="img-events" src={`${events[i].image}`} />
           <h5 className="title-event-list mt-1 fw-bold text-uppercase text-center">{`${events[i].name}`}</h5>
           <p className="dots-line mt-1 text-center">•••••••••••••••••••••</p>
-          <p className="mb-0 text-event-list text-center">{`Description: ${events[i].description}`}</p>
+          <p className="mb-0 text-event-list text-center">{`Description: ${limitLength(events[i].description)}`}</p>
           <p className="mb-0 text-event-list text-center">{`City: ${events[i].city}`}</p>
           <p className="mb-0 text-event-list text-center">{`Date: ${date}`}</p>
           <SelectEvent className="mt-1" event={events[i]} />

@@ -30,6 +30,14 @@ const AllEvents = () => {
       await allEventsAction();
     }
   }, []);
+
+  const limitLength = (str) => {
+    if (str.length > 20) {
+      return `${str.slice(0, 20)}...`;
+    }
+    return str;
+  };
+
   const renderEvents = () => {
     const result = [];
     for (
@@ -46,7 +54,7 @@ const AllEvents = () => {
           <Image className="img-events" src={`${events[i].image}`} />
           <h5 className="title-event-list mt-1 fw-bold text-uppercase text-center">{`${events[i].name}`}</h5>
           <p className="dots-line mt-1">•••••••••••••••••••••</p>
-          <p className="mb-0 text-event-list text-center">{`Description: ${events[i].description}`}</p>
+          <p className="mb-0 text-event-list text-center">{`Description: ${limitLength(events[i].description)}`}</p>
           <SelectEvents className="mt-1" event={events[i]} />
           {user.id === events[i].creator_id && (
             <Button
