@@ -134,3 +134,23 @@ export const reserveEvent = (eventDetails) => async (dispatch) => {
 
   dispatch({ type: ATTENDING_EVENTS, payload: data });
 };
+
+export const deleteAttendance = (attendanceId) => async (dispatch) => {
+  dispatch({ type: LOADING });
+  await fetch(`${URL}attendances/${attendanceId}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Accept: 'application/json',
+    },
+  });
+  const res = await fetch(`${URL}attendances`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Accept: 'application/json',
+    },
+  });
+  const data = await res.json();
+  dispatch({ type: ATTENDING_EVENTS, payload: data });
+};
