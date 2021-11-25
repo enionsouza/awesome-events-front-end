@@ -1,0 +1,78 @@
+.height-container {
+  height: 100vh;
+}
+
+.title-events {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.2rem;
+}
+
+.subtitle-events {
+  color: #cacaca;
+}
+
+.dots-line {
+  font-size: 0.8rem;
+  color: #efefef;
+}
+
+.back-btn,
+.back-btn:hover,
+.back-btn:focus {
+  border-radius: 0 50px 50px 0;
+  padding: 1rem 1rem 1rem 2rem;
+  background-color: rgb(151, 191, 15);
+  border: none;
+}
+
+.next-btn,
+.next-btn:hover,
+.next-btn:focus {
+  border-radius: 50px 0 0 50px;
+  padding: 1rem 2rem 1rem 1rem;
+  background-color: rgb(151, 191, 15);
+  border: none;
+}
+
+.img-events {
+  width: 15vw;
+  height: 15vw;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.title-event-list {
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+
+.text-event-list {
+  color: #cacaca;
+  font-size: 0.9rem;
+}
+
+.delete-btn,
+.delete-btn:hover {
+  background-color: white;
+  color: #d4d1d2;
+  border-radius: 50px;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 2px solid #efefef;
+  font-size: 1rem;
+}
+
+.color-icon-cancel {
+  color: #facbcb;
+}
+
+.width-18 {
+  width: 18rem;
+}
+
+.fs-09 {
+  font-size: 0.9rem;
+}

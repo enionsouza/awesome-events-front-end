@@ -1,0 +1,49 @@
+.image-size {
+  width: 100px;
+}
+
+.light-font {
+  color: white;
+}
+
+.bg-green {
+  background-color: rgb(151, 191, 15, 0.2);
+}
+
+.shadowed-white {
+  -webkit-filter: drop-shadow(0 0 2px rgb(240, 240, 240));
+  filter: drop-shadow(0 0 2px rgb(240, 240, 240));
+}
+
+.gray-btn {
+  color: #d4d1d2;
+  border-radius: 50px;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: rgb(97, 97, 97);
+  border: 2px solid rgb(97, 97, 97);
+}
+
+.gray-btn:hover {
+  color: rgb(97, 97, 97);
+  background-color: white;
+  border: 2px solid rgb(97, 97, 97);
+}
+
+.gray-text:hover {
+  color: rgb(97, 97, 97);
+}
+
+.menu-link {
+  color: var(--dark-gray);
+}
+
+.menu-link:hover {
+  color: var(--light-gray);
+  background-color: var(--green);
+}
+
+.offcanvas-body {
+  padding: 0 !important;
+}
