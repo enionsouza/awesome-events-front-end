@@ -7,10 +7,10 @@ import '../css/NavPanel.css';
 
 const SignOutButton = () => {
   const dispatch = useDispatch();
-  const signInAction = bindActionCreators(signOut, dispatch);
+  const signOutAction = bindActionCreators(signOut, dispatch);
 
   return (
-    <Button type="button" onClick={() => signInAction()} className="mx-2 d-flex align-items-center justify-content-center gray-btn">
+    <Button type="button" onClick={async () => signOutAction()} className="mx-2 d-flex align-items-center justify-content-center gray-btn">
       <FaSignOutAlt />
       <span className="ms-2">Sign Out</span>
     </Button>

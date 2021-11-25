@@ -51,9 +51,8 @@ const AttendingEvents = () => {
 
       result.push(
         <div
-          className="d-flex flex-column align-items-center justify-content-center mx-2"
+          className="d-flex flex-column width-18 align-items-center justify-content-center mx-2"
           key={events[i].id}
-          style={{ width: '18rem' }}
         >
           <Image className="img-events" src={`${events[i].image}`} />
           <h5 className="title-event-list mt-1 fw-bold text-uppercase text-center">{`${events[i].name}`}</h5>
@@ -78,7 +77,7 @@ const AttendingEvents = () => {
     <div className="container-fluid px-0 height-container d-flex justify-content-between align-items-center">
       <div className="row">
         <Button className="back-btn" onClick={() => handleNavigation(-1)}>
-          <BiLeftArrow className="fw-bold" style={{ fontSize: '0.9rem' }} />
+          <BiLeftArrow className="fs-09" />
         </Button>
       </div>
       <div className="row">
@@ -93,7 +92,7 @@ const AttendingEvents = () => {
       </div>
       <div className="row">
         <Button className="next-btn" onClick={() => handleNavigation(1)}>
-          <BiRightArrow className="fw-bold" style={{ fontSize: '0.9rem' }} />
+          <BiRightArrow className="fs-09" />
         </Button>
       </div>
     </div>
