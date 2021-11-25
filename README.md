@@ -8,31 +8,35 @@ The main goals for this exercise are:
 - Implement a connection between a Ruby on Rails back-end and ReactJS front-end.
 - Understand the pros and cons of different approaches of connecting Ruby on Rails back-end with ReactJS front-end.
 
+## Live Version
+- Front-End [Hosted on Netlify](https://awesome-events.netlify.app)
+- Back-End [Hosted on Heroku](https://awesome-events-back-end.herokuapp.com/)
+
 In this project, only the ReactJS front-end part was implemented. The back-end part of the project can be found in [this repo](https://github.com/aristides1000/awesome-events-back-end).
 
-- Below, a screenshots of the app is presented:
+- Below screenshots of the app are presented:
 
-- Welcome Page of our application
+- Welcome Page: 
 
 > ![screenshot](./docs/welcome_screenshot.png)
 
-- Details Page of our application
+- Details Page: 
 
 > ![screenshot](./docs/details_screenshot.png)
 
-- Events Page of our application
+- Events Page:
 
 > ![screenshot](./docs/events_screenshot.png)
 
-- Navigation Panel part of our application
+- Navigation Panel:
 
 > ![screenshot](./docs/navpanel_screenshot.png)
 
 ## Built With
 
 - ReactJS, Redux
+- Jest and React Testing Library
 - VisualStudio Code, Git, & GitHub
-
 ## Pre-requisites
 
 - NodeJs (v. 14.17)
@@ -61,12 +65,21 @@ npx browserslist@latest --update-db
 yarn start
 ```
 
-This should start your local server in [http://localhost:4200/](http://localhost:4200/). Now, you can go to your browser and visit this page, but for this app to execute properly, you need to set up the back-end part (API) which can be found in [this repo](https://github.com/aristides1000/awesome-events-back-end).
+- This should start your local server in [http://localhost:4200/](http://localhost:4200/). Now, you can go to your browser and visit this page, but for this app to execute properly, you need to set up the back-end part (API) which can be found in [this repo](https://github.com/aristides1000/awesome-events-back-end).
 
-To stop the server, hit `<CTRL> + C` on your keyboard.
+- To stop the server, hit `<CTRL> + C` on your keyboard.
 
+## Run tests
+
+To test the App's components and logic, please, run the following command:
+
+```sh
+yarn test
+```
+*** When the tests are finished, just hit `q` key to leave the watch mode for the tests. ***
 
 ## Authors
+- 3 people participated in this project:
 
 👨‍💻 **Arístides José Molina Pérez**
 
@@ -103,7 +116,6 @@ Give a ⭐️ if you like this project!
 - Microverse program ⚡
 - Our standup team 🏹
 - Our family's support 🙌
-
 
 ## 📝 License
 
