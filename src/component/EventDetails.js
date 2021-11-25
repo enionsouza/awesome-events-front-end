@@ -45,6 +45,11 @@ const EventDetails = () => {
     return () => null;
   }, []);
 
+  const handleCancelReservationButtonClick = async () => {
+    await deleteAttendanceAction(details.id);
+    navigate('/attending_events');
+  };
+
   return (
     <>
       {!loading && (
@@ -86,10 +91,7 @@ const EventDetails = () => {
             {date ? (
               <Button
                 className="reservation-btn d-flex align-items-center"
-                onClick={() => {
-                  deleteAttendanceAction(details.id);
-                  navigate('/attending_events');
-                }}
+                onClick={handleCancelReservationButtonClick}
               >
                 <GiCancel className="fs-1 pe-2" />
                 <span>Cancel Reservation</span>

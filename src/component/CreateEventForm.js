@@ -14,22 +14,24 @@ const CreateEventForm = () => {
   const [eventDescription, setEventDescription] = useState('');
   const [eventImage, setEventImage] = useState('');
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('name', eventName);
+    formData.append('description', eventDescription);
+    formData.append('image', eventImage);
+    await createEventAction(formData);
+    setEventName('');
+    setEventDescription('');
+    e.target.reset();
+  };
+
   return (
     <div className="row bg-image-sign-up mx-0 d-flex flex-column justify-content-center align-items-center">
       <div className="col-sm-6">
         <h2 className="light-font">Create new event</h2>
         <Form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            const formData = new FormData();
-            formData.append('name', eventName);
-            formData.append('description', eventDescription);
-            formData.append('image', eventImage);
-            await createEventAction(formData);
-            setEventName('');
-            setEventDescription('');
-            e.target.reset();
-          }}
+          onSubmit={handleSubmit}
         >
           <Form.Group className="mb-3" controlId="formBasicEventName">
             <Form.Control

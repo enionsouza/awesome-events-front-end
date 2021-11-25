@@ -11,13 +11,16 @@ const SelectEvent = ({ event }) => {
   const dispatch = useDispatch();
   const setEventDetailsAction = bindActionCreators(setEventDetails, dispatch);
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    setEventDetailsAction(event);
+    navigate('/event_details');
+  };
+
   return (
     <Button
       variant="primary"
-      onClick={() => {
-        setEventDetailsAction(event);
-        navigate('/event_details');
-      }}
+      onClick={handleClick}
       className="details-btn d-flex align-items-center"
     >
       <span>Details</span>

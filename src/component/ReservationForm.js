@@ -14,21 +14,25 @@ const ReservationForm = () => {
   const [eventCity, setEventCity] = useState('');
   const navigate = useNavigate();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const date = new Date(eventDate);
+    date.setHours(date.getHours() + 12);
+    const reservationDetails = {
+      event_id: details.id,
+      date,
+      city: eventCity,
+    };
+    await reserveEventAction(reservationDetails);
+    navigate('/attending_events');
+  };
+
   return (
     <div className="row bg-image-reservation mx-0 d-flex flex-column justify-content-center align-items-center">
       <div className="col-sm-6">
         <h2 className="light-font">Reserve an Event</h2>
         <Form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            const reservationDetails = {
-              event_id: details.id,
-              date: eventDate,
-              city: eventCity,
-            };
-            await reserveEventAction(reservationDetails);
-            navigate('/attending_events');
-          }}
+          onSubmit={handleSubmit}
           className="mt-3"
         >
 

@@ -29,30 +29,28 @@ export default (state = initialState, action) => {
 };
 
 // Action Creators
-export const signUp = (name, email, password, passwordConfirmation) => (dispatch) => {
+export const signUp = (name, email, password, passwordConfirmation) => async (dispatch) => {
   const user = {
     name,
     email,
     password,
     password_confirmation: passwordConfirmation,
   };
-
   const payload = {};
 
-  fetch(`${URL}users`, {
+  const res = await fetch(`${URL}users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
     body: JSON.stringify({ user }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      payload.name = data.user.name;
-      payload.id = data.user.id;
-      localStorage.token = JSON.stringify(data.user.token);
-    });
+  });
+  const data = await res.json();
+  localStorage.token = JSON.stringify(data.user.token);
+
+  payload.name = data.user.name;
+  payload.id = data.user.id;
 
   dispatch({ type: SIGN_UP, payload });
 };

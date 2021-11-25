@@ -24,6 +24,7 @@ const NavPanel = () => {
   useEffect(async () => {
     await fetchUserAction();
   }, []);
+
   return (
     <Navbar bg="transparent" className="sticky-top position-absolute" expand={false}>
       <Container fluid className="d-flex justify-between">
@@ -45,7 +46,8 @@ const NavPanel = () => {
               <>
                 <p className="pe-1 m-0 text-center">
                   Welcome Again
-                  <span className="ms-2">{user.name}</span>
+                  {' '}
+                  <span>{user.name}</span>
                 </p>
                 <div className="d-flex justify-content-center mb-4">
                   <SignOutButton />
@@ -66,16 +68,14 @@ const NavPanel = () => {
               <div className="d-flex align-items-center justify-content-center">
                 <Link
                   to="/sign_in"
-                  className="mx-2 gray-btn gray-text link-light d-flex align-items-center justify-content-center gray-text text-decoration-none
-"
+                  className="mx-2 gray-btn gray-text link-light d-flex align-items-center justify-content-center gray-text text-decoration-none"
                 >
                   <FaSignInAlt />
                   <span className="ms-2">Sign In</span>
                 </Link>
                 <Link
                   to="/sign_up"
-                  className="mx-1 gray-btn link-light d-flex align-items-center justify-content-center gray-text text-decoration-none
-"
+                  className="mx-1 gray-btn link-light d-flex align-items-center justify-content-center gray-text text-decoration-none"
                 >
                   <FiUserPlus />
                   <span className="ms-2">Sign Up</span>

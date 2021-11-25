@@ -38,21 +38,17 @@ export default (state = initialState, action) => {
 };
 
 // Action Creators
-export const createEvent = (formData) => (dispatch) => {
-  let payload = {};
-
-  fetch(`${URL}events`, {
+export const createEvent = (formData) => async (dispatch) => {
+  const res = await fetch(`${URL}events`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
     },
     body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      payload = data;
-    });
+  });
+  const payload = await res.json();
+
   dispatch({ type: CREATE_EVENT, payload });
 };
 
@@ -61,14 +57,14 @@ export const deleteEvent = (eventId) => async (dispatch) => {
   await fetch(`${URL}events/${eventId}`, {
     method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
     },
   });
   const res = await fetch(`${URL}events`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
     },
   });
@@ -83,7 +79,7 @@ export const allEvents = () => async (dispatch) => {
   const res = await fetch(`${URL}events`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
     },
   });
@@ -96,7 +92,7 @@ export const attendingEvents = () => async (dispatch) => {
   const res = await fetch(`${URL}attendances`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
     },
   });
@@ -115,7 +111,7 @@ export const reserveEvent = (eventDetails) => async (dispatch) => {
   await fetch(`${URL}attendances`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
@@ -125,7 +121,7 @@ export const reserveEvent = (eventDetails) => async (dispatch) => {
   const res = await fetch(`${URL}attendances`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
     },
   });
@@ -140,14 +136,14 @@ export const deleteAttendance = (attendanceId) => async (dispatch) => {
   await fetch(`${URL}attendances/${attendanceId}`, {
     method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
     },
   });
   const res = await fetch(`${URL}attendances`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+      Authorization: `Bearer ${JSON.parse(localStorage.token)}`,
       Accept: 'application/json',
     },
   });

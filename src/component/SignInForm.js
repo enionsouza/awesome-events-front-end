@@ -15,18 +15,20 @@ const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signInAction(email, password);
+    setEmail('');
+    setPassword('');
+    navigate('/');
+  };
+
   return (
     <div className="row bg-image-sign-in mx-0 d-flex flex-column justify-content-center align-items-center">
       <div className="col-sm-6">
         <h2 className="light-font">Sign In</h2>
         <Form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            await signInAction(email, password);
-            setEmail('');
-            setPassword('');
-            navigate('/');
-          }}
+          onSubmit={handleSubmit}
         >
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control

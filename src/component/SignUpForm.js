@@ -17,20 +17,22 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signUpAction(userName, email, password, passwordConfirmation);
+    setEmail('');
+    setPassword('');
+    setUserName('');
+    setPasswordConfirmation('');
+    navigate('/');
+  };
+
   return (
     <div className="row bg-image-sign-up mx-0 d-flex flex-column justify-content-center align-items-center">
       <div className="col-sm-6">
         <h2 className="light-font">Sign Up</h2>
         <Form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            await signUpAction(userName, email, password, passwordConfirmation);
-            setEmail('');
-            setPassword('');
-            setUserName('');
-            setPasswordConfirmation('');
-            navigate('/');
-          }}
+          onSubmit={handleSubmit}
         >
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control

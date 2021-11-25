@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root page Use Jest snapshots to test the Home page renders Home page placeholders as expected 1`] = `
+<DocumentFragment>
+  <div
+    class="App container-fluid d-flex justify-content-center flex-column px-0"
+  >
+    <nav
+      class="sticky-top position-absolute navbar navbar-light bg-transparent"
+    >
+      <div
+        class="d-flex justify-between container-fluid"
+      >
+        <button
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+          class="border border-4 bg-green shadowed-white navbar-toggler collapsed"
+          type="button"
+        >
+          <span
+            class="navbar-toggler-icon"
+          />
+        </button>
+      </div>
+    </nav>
+    <div
+      class="container-fluid d-flex flex-column justify-content-center align-items-center content-height bg-image"
+    >
+      <img
+        bg="transparent"
+        class="image-size border-0 mb-3 shadowed"
+        src="awesome-events-logo-white.png"
+      />
+      <h3
+        class="light-font"
+      >
+        <a
+          class="light-font"
+          href="/sign_in"
+        >
+          Sign In
+        </a>
+         or 
+        <a
+          class="light-font"
+          href="/sign_up"
+        >
+          Sign Up
+        </a>
+         to access available events and create your own events
+      </h3>
+    </div>
+  </div>
+</DocumentFragment>
+`;
