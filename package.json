@@ -21,11 +21,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix && PORT=4200 react-scripts start",
+    "start": "PORT=4200 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "linters": "eslint . --fix && stylelint \"**/*.{css,scss}\" --fix"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
